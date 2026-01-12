@@ -11,7 +11,6 @@ from collections import Counter
 # --- CONFIGURATION ---
 TRAFFIC_MODEL_PATH = "model1/best.pt"
 VIOLATION_MODEL_PATH = "model2/best2.pt"
-# --- FIX: EXACT PATH TO YOUR MODEL 3 ---
 PLATE_MODEL_PATH = "model3/best3.pt"
 
 st.set_page_config(page_title="AI Traffic Command Center", layout="wide")
