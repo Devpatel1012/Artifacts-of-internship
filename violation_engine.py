@@ -8,20 +8,17 @@ from groq import Groq
 
 class ViolationEngine:
     def __init__(self, model_path, plate_model_path, conf=0.25):
-        # We assume the Friend's model does EVERYTHING (Bikes, Helmets, Plates)
         print(f"Loading Combined Model: {model_path}")
         self.model = YOLO(model_path)
         
         self.plate_model = self.model 
         self.conf = conf 
         
-        # --- GROQ SETUP ---
-        # YOUR NEW API KEY (Verified from your request)
-        self.groq_client = Groq(api_key="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") 
+    
+        self.groq_client = Groq(api_key="gsk_uq7k8DgA2HkPENoqlUg7WGdy") 
         
-        # --- UPDATED MODEL ID (CRITICAL FIX) ---
-        # Old 'llama-3.2-90b' models are deprecated as of April 2025.
-        # We must use the new Llama 4 Vision model.
+        
+        
         self.vision_model_id = "meta-llama/llama-4-scout-17b-16e-instruct"
         
         os.makedirs("saved_violations", exist_ok=True)
@@ -57,7 +54,7 @@ class ViolationEngine:
             )
             
             raw_text = response.choices[0].message.content
-            print(f"Groq Raw Response: {raw_text}") # Debugging print
+            print(f"Groq Raw Response: {raw_text}") 
             return self.clean_plate_text(raw_text)
             
         except Exception as e:
